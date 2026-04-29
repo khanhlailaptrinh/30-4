@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heritage | Journey of Khanh 2026</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap");
+
+      :root {
+        --gold-primary: #c5a059;
+        --dark-bg: #0a0a0a;
+        --glass: rgba(255, 255, 255, 0.03);
+        --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      /* --- Custom Cursor --- */
+      #cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--gold-primary);
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      #cursor-outline {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--gold-primary);
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.15s ease-out;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--dark-bg);
+        color: #ffffff;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        cursor: none;
+      }
+
+      /* --- Navigation --- */
+      .glass-nav {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+      }
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        letter-spacing: 6px;
+        color: var(--gold-primary) !important;
+        font-weight: 700;
+      }
+      .nav-link {
+        font-weight: 300;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        color: #fff !important;
+      }
+      .nav-link:hover {
+        color: var(--gold-primary) !important;
+      }
+
+      /* --- Hero --- */
+      .hero-premium {
+        height: 100vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), var(--dark-bg)),
+          url("https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=2070");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      h1.display-1 {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      /* --- Stats Section --- */
+      .stat-box {
+        border-left: 1px solid rgba(197, 160, 89, 0.3);
+        padding: 20px 40px;
+      }
+      .stat-number {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        color: var(--gold-primary);
+        display: block;
+      }
+      .stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.6;
+      }
+
+      /* --- Luxury Card --- */
+      .luxury-card {
+        background: var(--glass);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0;
+        overflow: hidden;
+        transition: var(--transition);
+        height: 100%;
+      }
+      .luxury-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--gold-primary);
+        background: rgba(197, 160, 89, 0.02);
+      }
+      .img-zoom-container {
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+      }
+      .img-zoom-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 2s ease;
+        filter: grayscale(20%);
+      }
+      .luxury-card:hover img {
+        transform: scale(1.1);
+        filter: grayscale(0%);
+      }
+
+      /* --- Masonry Gallery --- */
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 24px;
+        border-radius: 8px;
+      }
+      .gallery-item img {
+        width: 100%;
+        transition: var(--transition);
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+        filter: brightness(0.7);
+      }
+
+      /* --- Wish Card --- */
+      .wish-card {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        height: 500px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .wish-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        transition: 1s;
+      }
+      .wish-card:hover .wish-img img {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+      }
+      .wish-overlay {
+        position: absolute;
+        bottom: 0;
+        padding: 40px;
+        background: linear-gradient(transparent, black);
+        width: 100%;
+      }
+
+      /* Typography Section */
+      .quote-bg {
+        font-family: "Playfair Display", serif;
+        font-size: 8vw;
+        opacity: 0.03;
+        position: absolute;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav py-3">
+      <div class="container">
+        <a class="navbar-brand" href="#">HERITAGE</a>
+        <div class="navbar-nav ms-auto d-none d-lg-flex">
+          <a class="nav-link px-4" href="#diadiem">KHÁM PHÁ</a>
+          <a class="nav-link px-4" href="#gallery">BỘ SƯU TẬP</a>
+          <a class="nav-link px-4" href="#uocmuon">ƯỚC MUỐN</a>
+          <a class="nav-link px-4" href="#kyniem">NHẬT KÝ</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero-premium">
+      <div data-aos="zoom-out">
+        <span class="gold-subtitle mb-2 d-block">Est. 2026</span>
+        <h1 class="display-1">Kỳ Nghỉ Hào Hùng</h1>
+        <div
+          style="
+            width: 80px;
+            height: 1px;
+            background: var(--gold-primary);
+            margin: 25px auto;
+          "
+        ></div>
+        <p class="lead fst-italic opacity-75">
+          "Mỗi chuyến đi là một lần tìm lại chính mình."
+        </p>
+      </div>
+    </header>
+
+    <section class="container py-5">
+      <div class="row g-4 text-center text-md-start">
+        <div class="col-6 col-md-3" data-aos="fade-up">
+          <div class="stat-box">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Tỉnh Thành</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-box">
+            <span class="stat-number">3.5k</span>
+            <span class="stat-label">Km Di Chuyển</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-box">
+            <span class="stat-number">850</span>
+            <span class="stat-label">Khoảnh Khắc</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-box">
+            <span class="stat-number">05</span>
+            <span class="stat-label">Năm Hành Trình</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diadiem" class="container py-5 mt-5">
+      <div class="row mb-5">
+        <div class="col-md-7" data-aos="fade-right">
+          <span class="gold-subtitle">Featured Locations</span>
+          <h2
+            class="display-4 mt-2"
+            style="font-family: &quot;Playfair Display&quot;, serif"
+          >
+            Dấu Chân Kỷ Niệm
+          </h2>
+          <p class="lead opacity-50 mt-4">
+            Những vùng đất đã đi qua không chỉ là tọa độ trên bản đồ, mà là một
+            phần linh hồn của hành trình trưởng thành.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-5">
+        <div class="col-md-8" data-aos="fade-up">
+          <div class="luxury-card">
+            <div class="img-zoom-container">
+              <img
+                src="30-danh-lam-thang-canh-viet-nam-phai-thu-mot-lan-trong-doi-2.webp"
+                alt="Main"
+              />
+            </div>
+            <div class="p-5">
+              <span class="gold-subtitle" style="font-size: 0.6rem"
+                >Điểm nhấn hành trình</span
+              >
+              <h3
+                class="display-6 my-3"
+                style="font-family: &quot;Playfair Display&quot;, serif"
+              >
+                Cố Đô Hoài Niệm
+              </h3>
+              <p class="opacity-50">
+                Nơi thời gian như ngưng đọng giữa những bức tường rêu phong,
+                nhắc nhở ta về một bề dày lịch sử vàng son của dân tộc.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row g-4">
+            <div class="col-12" data-aos="fade-left">
+              <div class="luxury-card">
+                <div class="img-zoom-container" style="height: 250px">
+                  <img
+                    src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1000"
+                    alt="Hội An"
+                  />
+                </div>
+                <div class="p-4">
+                  <h4 style="font-family: &quot;Playfair Display&quot;, serif">
+                    Hội An
+                  </h4>
+                  <p class="small opacity-50">
+                    Ánh đèn lồng soi bóng dòng sông Hoài.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" data-aos="fade-left" data-aos-delay="200">
+              <div class="luxury-card">
+                <div class="img-zoom-container" style="height: 250px">
+                  <img src="cover1.webp" alt="Đà Lạt" />
+                </div>
+                <div class="p-4">
+                  <h4 style="font-family: &quot;Playfair Display&quot;, serif">
+                    Đà Lạt
+                  </h4>
+                  <p class="small opacity-50">
+                    Thành phố của sương mù và những nỗi nhớ.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="container py-5">
+      <h2
+        class="text-center mb-5"
+        style="font-family: &quot;Playfair Display&quot;, serif"
+        data-aos="fade-up"
+      >
+        Gallery
+      </h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="gallery-item" data-aos="fade-up">
+            <img src="canh-dep-da-lat-1-1722331966.jpg" />
+          </div>
+          <div class="gallery-item" data-aos="fade-up">
+            <img src="thanh-pho-da-lat-2.jpg" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img
+              src="da-lat-noi-cat-giu-nhung-buc-anh-song-ao-dep-nhat-3.jpg"
+            />
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="song-thu-bon.jpg" />
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="pho-co-hoi-an-o-tinh-nao.jpg" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="hoalu.jpg" />
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="hoalu1.jpg" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="uocmuon" class="container-fluid py-5 bg-white text-dark mt-5">
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <div class="col-lg-4" data-aos="fade-right">
+            <h2
+              class="display-3"
+              style="font-family: &quot;Playfair Display&quot;, serif"
+            >
+              Những Ước Muốn
+            </h2>
+            <p class="lead my-4">
+              Danh sách những vùng đất tôi sẽ chinh phục trong tương lai gần.
+            </p>
+            <a href="#gallery" class="btn btn-dark rounded-0 px-5 py-3"
+              >XEM CHI TIẾT</a
+            >
+          </div>
+          <div class="col-lg-8">
+            <div class="row g-3">
+              <div class="col-md-6" data-aos="zoom-in">
+                <div class="wish-card text-white">
+                  <div class="wish-img">
+                    <img src="sapa.png" />
+                  </div>
+                  <div class="wish-overlay">
+                    <span class="gold-subtitle">Target 2026</span>
+                    <h4>Sapa mờ sương</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="wish-card text-white mt-md-5">
+                  <div class="wish-img">
+                    <img src="hagiang.jpg" />
+                  </div>
+                  <div class="wish-overlay">
+                    <span class="gold-subtitle">Target 2027</span>
+                    <h4>Hà Giang hùng vĩ</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kyniem" class="container py-100 mt-5">
+      <div class="row">
+        <div class="col-md-5" data-aos="fade-right">
+          <h2
+            class="display-4"
+            style="font-family: &quot;Playfair Display&quot;, serif"
+          >
+            Nhật Ký
+          </h2>
+          <div class="quote-bg">WANDERLUST</div>
+        </div>
+        <div class="col-md-7">
+          <div class="timeline-item" data-aos="fade-left">
+            <span class="gold-subtitle">30/04/2026</span>
+            <h4 class="mt-2">Đêm rằm Hội An</h4>
+            <p class="opacity-50">
+              Thả đèn hoa đăng trên sông Hoài, cảm nhận sự bình yên đến lạ
+              thường trong từng nhịp thở của phố cổ.
+            </p>
+          </div>
+          <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+            <span class="gold-subtitle">15/07/2025</span>
+            <h4 class="mt-2">Hoàng hôn Phú Quốc</h4>
+            <p class="opacity-50">
+              Khi mặt trời lặn xuống biển, cả bầu trời rực cháy một màu đỏ cam
+              rực rỡ.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="py-5 text-center opacity-30 small"
+      style="letter-spacing: 5px"
+    >
+      © 2026 MEMORY | GROUP4
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1200, once: true });
+      const dot = document.getElementById("cursor-dot");
+      const outline = document.getElementById("cursor-outline");
+      window.addEventListener("mousemove", (e) => {
+        dot.style.left = e.clientX + "px";
+        dot.style.top = e.clientY + "px";
+        outline.animate(
+          { left: `${e.clientX - 15}px`, top: `${e.clientY - 15}px` },
+          { duration: 500, fill: "forwards" },
+        );
+      });
+    </script>
+  </body>
+</html>
